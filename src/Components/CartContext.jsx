@@ -38,16 +38,26 @@ export function CartProvider({ children }) {
 	let removeProduct = (product) => {
 		if (cart.length > 0) {
 			if (cart[0].quantity === 1) {
-				setCart([]);
+				clearCart();
 			} else {
 				UpdateQunatity(product, true);
 			}
 		}
 	};
 
+	let clearCart = () => {
+		setCart([]);
+	};
+
 	return (
 		<CartContext.Provider
-			value={{ cart, cart_l: cart.length, addProduct, removeProduct }}
+			value={{
+				cart,
+				cart_l: cart.length,
+				addProduct,
+				clearCart,
+				removeProduct,
+			}}
 		>
 			{children}
 		</CartContext.Provider>

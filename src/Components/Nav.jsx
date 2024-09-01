@@ -6,7 +6,7 @@ export function Nav() {
 	let menu = useRef(null);
 	let cartContent = useRef(null);
 
-	let { cart, cart_l, removeProduct } = useContext(CartContext);
+	let { cart, cart_l, clearCart } = useContext(CartContext);
 
 	let toggleMenu = () => {
 		let menuClassList = menu.current.classList;
@@ -24,8 +24,10 @@ export function Nav() {
 				!e.target.matches('.cartbtn img') &&
 				!e.target.matches('.cartbtn .badge') &&
 				!e.target.matches('.addBTN') &&
-				!e.target.matches('.delete__prod') &&
-				!e.target.matches('.delete__prod img')
+				!e.target.matches('.plus') &&
+				!e.target.matches('.plus img') &&
+				!e.target.matches('.minus') &&
+				!e.target.matches('.minus img')
 			) {
 				cartContent.current.classList.add('hide');
 			}
@@ -122,7 +124,7 @@ export function Nav() {
 										</div>
 									</div>
 									<button
-										onClick={() => removeProduct(product)}
+										onClick={() => clearCart()}
 										className='delete__prod'
 									>
 										<img src='./images/icon-delete.svg' />
